@@ -8,7 +8,8 @@ class UserHeader extends Component {
   };
 
   render() {
-    const user = this.props.users.find(user => user.id === this.props.userId);
+    const {user}=this.props
+    console.log(this.props.user)
 
     if(!user){
         return <div>Loading...</div>;
@@ -17,8 +18,9 @@ class UserHeader extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  users: state.users
+const mapStateToProps = (state, ownProps) => ({
+  // ownProps fait référence aux props recues par le composant (this.props)
+  user: state.users.find(user => user.id === ownProps.userId)
 });
 
 export default connect(
